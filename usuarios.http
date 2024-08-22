@@ -1,0 +1,37 @@
+GET http://localhost:3000/api/pacientes/
+
+###
+
+GET http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "hola@gmail.com",
+    "password": "admin123"
+}
+
+###
+GET http://localhost:3000/api/usuarios
+
+###
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "email":"larry@test.com",
+    "password":"larry123"
+}
+
+###
+
+PUT http://localhost:3000/api/usuarios/66c74da12caef96dd3f3a2c0
+Content-Type: application/json
+
+{
+    "email":"emi2@test.com",
+    "password":"testEmi1234"
+}
+
+###
+
+DELETE http://localhost:3000/api/usuarios/66c5d04f6158841384515aa4
