@@ -53,7 +53,7 @@ exports.updatePaciente = async (req, res) => {
 
 exports.deletePaciente = async(req, res) => {
     try {
-        await movieService.deletePaciente(req.params.dni)
+        await pacienteService.deletePaciente(req.params.dni)
         res.status(200).json("El paciente se eliminó con éxito");
     } catch (error) {
         console.log(error);

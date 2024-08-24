@@ -2,7 +2,7 @@ const { getUsuario }= require('../Repository/usuarioRepository');
 const usuarioRepository = require('../Repository/usuarioRepository');
 
   exports.loginUser = async (email,password)=>{
-    const user = await UserRpository.GetUserByEmailAndPassword(email, password);
+    const user = await usuarioRepository.GetUserByEmailAndPassword(email, password);
     if (user) {
       return user;
     }else{
