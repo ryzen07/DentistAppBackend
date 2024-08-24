@@ -3,21 +3,14 @@ const UsuarioBack = require('./UsuarioBack');
 
 //conectarDB();
 
-exports.getUsuario = async(email, password)=>{
-    try {
-        const user = await UsuarioBack.findOne({ email: email, password: password });
-        if (user) {
-            
-            return user;
-          } else {
-            
-            return null;
-          }
-    } catch (error) {
-        console.error('Error al consultar el usuario:', error);
-        throw error;
-    }
-}
+exports.GetUserByEmailAndPassword = async (email, password)=>{
+  try {
+    return await UsuarioBack.findOne({email, password});
+  } catch (error) {
+    console.error('error al consultar usuario:',error);
+    throw error;
+  }
+};
 
 exports.getUsersRepo = async () => {
   try {

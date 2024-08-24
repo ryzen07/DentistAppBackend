@@ -7,6 +7,7 @@ consultorioRouter.use(express.json());
 router.get('/',usuarioController.readUsers);
 router.get('/login', usuarioController.login);
 router.post('/',usuarioController.createUser);
+router.post('/login', userController.login);
 router.put('/:id',usuarioController.updateUser);
 router.delete('/:id',usuarioController.deleteUser);
 

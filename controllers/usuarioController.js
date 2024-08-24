@@ -1,20 +1,16 @@
 const usuarioService = require('../services/usuarioService');
 
 exports.login = async (req, res) => {
-    const { email, password } = req.body;
-  
-    try {
-      const user = await usuarioService.autenticarUsuario(email, password);
-      if (user) {
-        res.status(200).json({ mensaje: 'Autenticación exitosa', usuario: user });
-      } else {
-        
-        res.status(401).json({ mensaje: 'Credenciales incorrectas' });
-      }
-    } catch (error) {
-      res.status(500).json({ mensaje: 'Error interno del servidor' });
-    }
-  };
+  const { email, password } = req.body;
+
+  try {
+      const user = await userService.loginUser(email, password);
+      res.status(200).json({ success: true, user });
+  } catch (error) {
+      res.status(401).json({ success: false, message: error.message });
+  }
+};
+
 
 exports.readUsers = async (req,res) => {
   try{ 
