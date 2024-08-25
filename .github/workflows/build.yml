@@ -8,5 +8,9 @@ jobs:
       - run: node --version
       - run: npm --version
       - uses: actions/checkout@v3
+
+      - name: Crear archivo .env
+        run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+
       - run: npm install
       - run: node app.js
