@@ -6,7 +6,7 @@ const usuarioController = require('../controllers/usuarioController');
 consultorioRouter.use(express.json());
 router.get('/',usuarioController.readUsers);
 router.post('/',usuarioController.createUser);
-router.post('/login', userController.login);
+router.post('/login', usuarioController.login);
 router.put('/:id',usuarioController.updateUser);
 router.delete('/:id',usuarioController.deleteUser);
 
