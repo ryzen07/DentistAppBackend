@@ -7,29 +7,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Configurar variables de entorno
-        run: echo "Las variables de entorno están configuradas"
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_PORT: ${{secrets.DB_PORT}}
-
+      - name: Crear archivo .env
+        run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+        
       - name: Instalar dependencias
         run: npm install
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_PORT: ${{secrets.DB_PORT}}
-
+        
       - name: Ejecutar aplicación
         run: node app.js
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_PORT: ${{secrets.DB_PORT}}
