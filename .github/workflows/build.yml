@@ -4,14 +4,37 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:16
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
 
       - name: Crear archivo .env
         run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
-        
+
+      - name: Configurar cache de NPM
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-cache
+          restore-keys: |
+            ${{ runner.os }}-npm-cache
+
       - name: Instalar dependencias
         run: npm install
-        
+
+      - name: Ejecutar pruebas
+        run: npm test
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+
       - name: Ejecutar aplicación
         run: node app.js
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
