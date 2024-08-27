@@ -10,7 +10,7 @@ const DB_NAME = process.env.DB_NAME;
 
 // Construir la URI con el parámetro adicional
 const URI = `mongodb+srv://${USER}:${PASSWORD}@${HOST}/${DB_NAME}?retryWrites=true&w=majority`;
-
+console.log("MongoDB URI:", URI);
 const conectarDB = async () => {
     try {
         await mongoose.connect(URI);
